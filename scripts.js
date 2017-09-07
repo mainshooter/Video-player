@@ -15,12 +15,15 @@ function select(element) {
   Start = {
     placeListners: function() {
       select('.player__button').addEventListener('click', function(){ VideoController.playOrStop(); });
+      select('.player__slider').addEventListener('mouseup', function() { VideoController.volume(); });
     }
   }
 })();
-
 (function() {
   VideoController = {
+    /**
+     * Plays of pause the video
+     */
     playOrStop: function() {
       console.log("RUN");
       if (videoStatus === true) {
@@ -34,6 +37,12 @@ function select(element) {
         videoElement.play();
         videoStatus = true;
       }
+    },
+
+    volume: function() {
+      var volumeLvl = select('.player__slider').value;
+      console.log(volumeLvl);
+      videoElement.volume = volumeLvl;
     }
   }
 })();
