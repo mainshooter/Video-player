@@ -2,6 +2,9 @@ var Start;
 var VideoController;
 var Video;
 
+var intervalBarLenght;
+// Contains a interval for the function: VideoController.updateVideoBar();
+
 var videoElement = select('video');
 
 
@@ -54,10 +57,20 @@ function selectAll(elements) {
     getVideoLenght: function() {
       return(videoElement.duration);
     },
+
+    updateVideoBar: function() {
+      var currentPlayTime = VideoController.getCurrentPlayTime();
+      var videoLenght = VideoController.getVideoLenght();
+
+      var percentageViewed = ((currentPlayTime - videoLenght ) / videoLenght * 100) + 100;
+      // Contains how far we are with watching the video in %
+      select(".progress__filled").style.flexBasis = percentageViewed + "px";
+    },
     /**
      * Plays of pause the video
      */
     playOrStop: function() {
+      VideoController.updateVideoBar();
       if (VideoController.getStatus() === true) {
         // Video is playing
         videoElement.pause();
@@ -87,3 +100,4 @@ function selectAll(elements) {
 })();
 
 Start.placeListners();
+intervalBarLenght = setInterval(function() { VideoController.updateVideoBar(); }, 1000);
