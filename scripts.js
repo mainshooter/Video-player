@@ -27,7 +27,7 @@ function selectAll(elements) {
      * Gets the status fo the video, is it playing or not
      * @return {[boolean]} [If it is playing we return true if it isn't playing we return false]
      */
-    status: function() {
+    getStatus: function() {
       var videoStatus = videoElement.paused;
       if (videoStatus === true) {
         // Video is paused we return false
@@ -40,16 +40,31 @@ function selectAll(elements) {
       }
     },
     /**
+     * Gets the current time of how far we are in the video
+     * @return {[float]} [the current play time of the video in seconds]
+     */
+    getCurrentPlayTime: function() {
+      return(videoElement.currentTime);
+    },
+
+    /**
+     * Gets the total lenght of a video and returns it
+     * @return {[float]} [The time in seconds of how long the video is]
+     */
+    getVideoLenght: function() {
+      return(videoElement.duration);
+    },
+    /**
      * Plays of pause the video
      */
     playOrStop: function() {
-      if (VideoController.status() === true) {
+      if (VideoController.getStatus() === true) {
         // Video is playing
         videoElement.pause();
         videoStatus = false;
       }
 
-      else if (VideoController.status() === false) {
+      else if (VideoController.getStatus() === false) {
         // Video is not playing
         videoElement.play();
         videoStatus = true;
