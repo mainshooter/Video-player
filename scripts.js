@@ -20,6 +20,7 @@ function selectAll(elements) {
       select('.player__button').addEventListener('click', function(){ VideoController.playOrStop(); });
       select('.player__slider').addEventListener('mouseup', function() { VideoController.volume(); });
       selectAll('.player__slider')[1].addEventListener('mouseup', function() { VideoController.speed(); });
+      select('.progress').addEventListener('click', function() { VideoController.updateCurrentPlayTime(event); });
     }
   }
 })();
@@ -58,6 +59,9 @@ function selectAll(elements) {
       return(videoElement.duration);
     },
 
+    /**
+     * Updates the video bar on how far we are
+     */
     updateVideoBar: function() {
       var currentPlayTime = VideoController.getCurrentPlayTime();
       var videoLenght = VideoController.getVideoLenght();
@@ -65,6 +69,20 @@ function selectAll(elements) {
       var percentageViewed = ((currentPlayTime - videoLenght ) / videoLenght * 100) + 100;
       // Contains how far we are with watching the video in %
       select(".progress__filled").style.flexBasis = percentageViewed + "px";
+    },
+
+    updateCurrentPlayTime: function(event) {
+      var mouseHorizonLocation = event.clientX;
+      // Is good
+
+      var fullPlaybarSize = select('.progress').offsetWidth;
+      // Good
+
+      var fullVideoLenght = VideoController.getVideoLenght();
+      // Good
+
+
+      // videoElement.currentTime('time');
     },
     /**
      * Plays of pause the video
