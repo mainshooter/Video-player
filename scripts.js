@@ -73,6 +73,7 @@ function selectAll(elements) {
 
     updateCurrentPlayTime: function(event) {
       var mouseHorizonLocation = event.clientX;
+      console.log("Mouse location: " + mouseHorizonLocation);
       // Is good
 
       var fullPlaybarSize = select('.progress').clientWidth;
@@ -83,7 +84,7 @@ function selectAll(elements) {
 
       var oneSecondWorthInPx = fullVideoLenght / fullPlaybarSize;
 
-      var newTime = (mouseHorizonLocation - 0) * oneSecondWorthInPx;
+      var newTime = (mouseHorizonLocation - 400) * oneSecondWorthInPx;
 
       videoElement.currentTime = newTime;
       VideoController.updateVideoBar();
