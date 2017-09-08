@@ -68,21 +68,25 @@ function selectAll(elements) {
 
       var percentageViewed = ((currentPlayTime - videoLenght ) / videoLenght * 100) + 100;
       // Contains how far we are with watching the video in %
-      select(".progress__filled").style.flexBasis = percentageViewed + "px";
+      select(".progress__filled").style.flexBasis = percentageViewed + "%";
     },
 
     updateCurrentPlayTime: function(event) {
       var mouseHorizonLocation = event.clientX;
       // Is good
 
-      var fullPlaybarSize = select('.progress').offsetWidth;
+      var fullPlaybarSize = select('.progress').clientWidth;
       // Good
 
       var fullVideoLenght = VideoController.getVideoLenght();
       // Good
 
+      var oneSecondWorthInPx = fullVideoLenght / fullPlaybarSize;
 
-      // videoElement.currentTime('time');
+      var newTime = (mouseHorizonLocation - 0) * oneSecondWorthInPx;
+
+      videoElement.currentTime = newTime;
+      VideoController.updateVideoBar();
     },
     /**
      * Plays of pause the video
