@@ -14,6 +14,7 @@ function select(element) {
 function selectAll(elements) {
   return(document.querySelectorAll(elements));
 }
+console.log(selectAll(".player__button"));
 (function() {
   Start = {
     placeListners: function() {
@@ -21,6 +22,7 @@ function selectAll(elements) {
       select('.player__slider').addEventListener('mouseup', function() { VideoController.volume(); });
       selectAll('.player__slider')[1].addEventListener('mouseup', function() { VideoController.speed(); });
       select('.progress').addEventListener('click', function() { VideoController.updateCurrentPlayTime(event); });
+      selectAll('.player__button')[1].addEventListener('click', function() { VideoController.setVideoTenSecondsBack(); });
     }
   }
 })();
@@ -59,6 +61,18 @@ function selectAll(elements) {
       return(videoElement.duration);
     },
 
+    setVideoTenSecondsBack: function() {
+      var currentVideoTime = VideoController.getCurrentPlayTime();
+      // Current time in seconds
+
+      videoElement.currentTime = currentVideoTime - 10;
+      VideoController.updateVideoBar();
+    },
+
+    setVideoTwentyFiveForward: function() {
+
+    }
+
     /**
      * Updates the video bar on how far we are
      */
@@ -73,18 +87,19 @@ function selectAll(elements) {
 
     updateCurrentPlayTime: function(event) {
       var mouseHorizonLocation = event.clientX;
-      console.log("Mouse location: " + mouseHorizonLocation);
-      // Is good
+      // To get the position of the mouse
 
       var fullPlaybarSize = select('.progress').clientWidth;
-      // Good
+      // With of the playbar
 
       var fullVideoLenght = VideoController.getVideoLenght();
-      // Good
+      // To lenght of the video
 
       var oneSecondWorthInPx = fullVideoLenght / fullPlaybarSize;
+      // Calculate how mutch one second is worth in px
 
       var newTime = (mouseHorizonLocation - 400) * oneSecondWorthInPx;
+      // The new play time
 
       videoElement.currentTime = newTime;
       VideoController.updateVideoBar();
