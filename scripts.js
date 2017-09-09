@@ -23,6 +23,7 @@ console.log(selectAll(".player__button"));
       selectAll('.player__slider')[1].addEventListener('mouseup', function() { VideoController.speed(); });
       select('.progress').addEventListener('click', function() { VideoController.updateCurrentPlayTime(event); });
       selectAll('.player__button')[1].addEventListener('click', function() { VideoController.setVideoTenSecondsBack(); });
+      selectAll('.player__button')[2].addEventListener('click', function() { VideoController.setVideoTwentyFiveForward(); });
     }
   }
 })();
@@ -70,8 +71,12 @@ console.log(selectAll(".player__button"));
     },
 
     setVideoTwentyFiveForward: function() {
+      var currentVideoTime = VideoController.getCurrentPlayTime();
+      // Current time in seconds
 
-    }
+      videoElement.currentTime = currentVideoTime + 25;
+      VideoController.updateVideoBar();
+    },
 
     /**
      * Updates the video bar on how far we are
