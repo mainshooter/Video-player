@@ -72,8 +72,6 @@ function selectAll(elements) {
 
       var newPlayTime = currentVideoTime - 10;
       Video.playTime(newPlayTime);
-
-      VideoController.updateVideoBar();
     },
 
     setVideoTwentyFiveForward: function() {
@@ -83,7 +81,6 @@ function selectAll(elements) {
        var newPlayTime = currentVideoTime + 25;
 
       Video.playTime(newPlayTime);
-      VideoController.updateVideoBar();
     },
 
     /**
@@ -116,7 +113,6 @@ function selectAll(elements) {
       // The new play time
 
       Video.playTime(newTime);
-      VideoController.updateVideoBar();
     },
     /**
      * Plays of pause the video
@@ -199,6 +195,7 @@ function selectAll(elements) {
      */
     playTime: function(time) {
       videoElement.currentTime = time;
+      VideoController.updateVideoBar();
     },
   }
 })();
