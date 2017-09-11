@@ -14,7 +14,7 @@ function select(element) {
 function selectAll(elements) {
   return(document.querySelectorAll(elements));
 }
-console.log(selectAll(".player__button"));
+
 (function() {
   Start = {
     placeListners: function() {
@@ -94,7 +94,8 @@ console.log(selectAll(".player__button"));
       var mouseHorizonLocation = event.clientX;
       // To get the position of the mouse
 
-      var fullPlaybarSize = select('.progress').clientWidth;
+      var fullPlaybarSize = select('.progress').offsetWidth;
+      var fullScreenWith = screen.width;
       // With of the playbar
 
       var fullVideoLenght = VideoController.getVideoLenght();
