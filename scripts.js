@@ -70,7 +70,9 @@ function selectAll(elements) {
       var currentVideoTime = VideoController.getCurrentPlayTime();
       // Current time in seconds
 
-      videoElement.currentTime = currentVideoTime - 10;
+      var newPlayTime = currentVideoTime - 10;
+      Video.playTime(newPlayTime);
+
       VideoController.updateVideoBar();
     },
 
@@ -78,7 +80,9 @@ function selectAll(elements) {
       var currentVideoTime = VideoController.getCurrentPlayTime();
       // Current time in seconds
 
-      videoElement.currentTime = currentVideoTime + 25;
+       var newPlayTime = currentVideoTime + 25;
+
+      Video.playTime(newPlayTime);
       VideoController.updateVideoBar();
     },
 
@@ -111,7 +115,7 @@ function selectAll(elements) {
       var newTime = (mouseHorizonLocation - 400) * oneSecondWorthInPx;
       // The new play time
 
-      videoElement.currentTime = newTime;
+      Video.playTime(newTime);
       VideoController.updateVideoBar();
     },
     /**
@@ -121,14 +125,12 @@ function selectAll(elements) {
       VideoController.updateVideoBar();
       if (VideoController.getStatus() === true) {
         // Video is playing
-        videoElement.pause();
-        videoStatus = false;
+        Video.pause();
       }
 
       else if (VideoController.getStatus() === false) {
         // Video is not playing
-        videoElement.play();
-        videoStatus = true;
+        Video.play();
       }
     },
 
@@ -137,24 +139,67 @@ function selectAll(elements) {
      */
     volume: function() {
       var volumeLvl = select('.player__slider').value;
-      videoElement.volume = volumeLvl;
+      Video.volume(volumeLvl);
     },
 
+    /**
+     * Controlls the new speed
+     */
     speed: function() {
-      var speed = selectAll('.player__slider')[1].value;
-      videoElement.playbackRate = speed;
+      var speedLvl = selectAll('.player__slider')[1].value;
+      Video.speed(speedLvl);
     }
   }
 })();
 
 (function() {
   Video = {
+    /**
+     * Starts the video automatic when the webpage is loaded
+     */
     autoPlay: function() {
       if (VideoController.getStatus() === false) {
         // If the video is paused
         videoElement.play();
       }
-    }
+    },
+    /**
+     * Starts the video
+     */
+    play: function() {
+      videoElement.play();
+    },
+
+    /**
+     * Pauses the video
+     */
+    pause: function() {
+      videoElement.pause();
+    },
+
+    /**
+     * Changes the volume
+     * @param  {[float]} volumeLvl [The new volume lvl 0.1 to 1.0]
+     */
+    volume: function(volumeLvl) {
+      videoElement.volume = volumeLvl;
+    },
+
+    /**
+     * Changes the speed / playbackrate of the video
+     * @param  {[float]} speedLvl [The speed lvl from 0.1 to 1.0]
+     */
+    speed: function(speedLvl) {
+      videoElement.playbackRate = speedLvl;
+    },
+
+    /**
+     * Changes the time of were the video is playing right now
+     * @param  {[int]} time [The new time in seconds]
+     */
+    playTime: function(time) {
+      videoElement.currentTime = time;
+    },
   }
 })();
 
