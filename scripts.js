@@ -143,5 +143,18 @@ function selectAll(elements) {
   }
 })();
 
+(function() {
+  Video = {
+    autoPlay: function() {
+      if (VideoController.getStatus() === false) {
+        // If the video is paused
+        videoElement.play();
+      }
+    }
+  }
+})();
+
 Start.placeListners();
+VideoController.updateVideoBar();
+Video.autoPlay();
 intervalBarLenght = setInterval(function() { VideoController.updateVideoBar(); }, 1000);
