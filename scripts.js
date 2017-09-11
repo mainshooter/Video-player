@@ -114,6 +114,7 @@ function selectAll(elements) {
 
       Video.playTime(newTime);
     },
+    
     /**
      * Plays of pause the video
      */
@@ -149,7 +150,12 @@ function selectAll(elements) {
 })();
 
 (function() {
+  /**
+   * Controlls video behaviour
+   * @type {Object}
+   */
   Video = {
+
     /**
      * Starts the video automatic when the webpage is loaded
      */
