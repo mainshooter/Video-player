@@ -16,6 +16,10 @@ function selectAll(elements) {
 }
 
 (function() {
+  /**
+   * Start all the things we need to run on load
+   * @type {Object}
+   */
   Start = {
     placeListners: function() {
       select('.player__button').addEventListener('click', function(){ VideoController.playOrStop(); });
