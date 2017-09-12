@@ -23,8 +23,8 @@ function selectAll(elements) {
   Start = {
     placeListners: function() {
       select('.player__button').addEventListener('click', function(){ VideoController.playOrStop(); });
-      select('.player__slider').addEventListener('mouseup', function() { VideoController.volume(); });
-      selectAll('.player__slider')[1].addEventListener('mouseup', function() { VideoController.speed(); });
+      select(".player__slider[name='volume']").addEventListener('mouseup', function() { VideoController.volume(); });
+      select(".player__slider[name='playbackRate']").addEventListener('mouseup', function() { VideoController.speed(); });
       select('.progress').addEventListener('click', function() { VideoController.updateCurrentPlayTime(event); });
       selectAll('.player__button')[1].addEventListener('click', function() { VideoController.setVideoTenSecondsBack(); });
       selectAll('.player__button')[2].addEventListener('click', function() { VideoController.setVideoTwentyFiveForward(); });
@@ -114,7 +114,7 @@ function selectAll(elements) {
 
       Video.playTime(newTime);
     },
-    
+
     /**
      * Plays of pause the video
      */
