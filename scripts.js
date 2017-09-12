@@ -100,8 +100,14 @@ function selectAll(elements) {
       // To get the position of the mouse
 
       var fullPlaybarSize = select('.progress').offsetWidth;
-      var fullScreenWith = screen.width;
-      // With of the playbar
+      // The width of the play bar
+
+      var fullScreenWidth = window.innerWidth;
+      // The width of the screen
+
+      var spaceBetweenVideoAndBody = (fullScreenWidth - fullPlaybarSize) / 2;
+      // We remove the size of the play bar of the widt of the screen / 2
+      // To know how long the space is between the start of the body and the video
 
       var fullVideoLenght = VideoController.getVideoLenght();
       // To lenght of the video
@@ -109,8 +115,9 @@ function selectAll(elements) {
       var oneSecondWorthInPx = fullVideoLenght / fullPlaybarSize;
       // Calculate how mutch one second is worth in px
 
-      var newTime = (mouseHorizonLocation - 400) * oneSecondWorthInPx;
-      // The new play time
+      var newTime = (mouseHorizonLocation - spaceBetweenVideoAndBody) * oneSecondWorthInPx;
+      // We get the location of the mouse minus the space of of the start of the body and the video
+      // multiply to howmucht one second is worth in px
 
       Video.playTime(newTime);
     },
