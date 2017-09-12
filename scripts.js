@@ -1,4 +1,3 @@
-var Start;
 var VideoController;
 var Video;
 
@@ -18,18 +17,13 @@ function selectAll(elements) {
 (function() {
   /**
    * Start all the things we need to run on load
-   * @type {Object}
    */
-  Start = {
-    placeListners: function() {
       select('.player__button').addEventListener('click', function(){ VideoController.playOrStop(); });
       select(".player__slider[name='volume']").addEventListener('mouseup', function() { VideoController.volume(); });
       select(".player__slider[name='playbackRate']").addEventListener('mouseup', function() { VideoController.speed(); });
       select('.progress').addEventListener('click', function() { VideoController.updateCurrentPlayTime(event); });
       selectAll('.player__button')[1].addEventListener('click', function() { VideoController.setVideoTenSecondsBack(); });
       selectAll('.player__button')[2].addEventListener('click', function() { VideoController.setVideoTwentyFiveForward(); });
-    }
-  }
 })();
 (function() {
   VideoController = {
@@ -213,7 +207,6 @@ function selectAll(elements) {
   }
 })();
 
-Start.placeListners();
 VideoController.updateVideoBar();
 Video.autoPlay();
 intervalBarLenght = setInterval(function() { VideoController.updateVideoBar(); }, 1000);
