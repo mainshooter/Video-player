@@ -149,7 +149,7 @@ function selectAll(elements) {
       Video.speed(speedLvl);
     },
     fullScreen: function() {
-    		videoElement.webkitRequestFullScreen();
+    		select(".player").webkitRequestFullScreen();
     }
   }
 })();
