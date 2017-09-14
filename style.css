@@ -154,3 +154,19 @@ input[type=range]::-moz-range-thumb {
   background: #ffc600;
   cursor: pointer;
 }
+
+
+video::-webkit-media-controls {
+  display:none !important;
+}
+video::-webkit-media-controls-enclosure {
+  display:none !important;
+}
+/*To hide standard controlls*/
+
+
+.player__controls {
+  z-index: 2147483647;
+  right: 0;
+}
+/*To show our controlls*/
