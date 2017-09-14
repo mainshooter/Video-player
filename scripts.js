@@ -18,6 +18,7 @@ function selectAll(elements) {
   /**
    * Start all the things we need to run on load
    */
+      select("video").addEventListener('dblclick', function() { VideoController.fullScreen(); });
       select('.player__button').addEventListener('click', function(){ VideoController.playOrStop(); });
       select(".player__slider[name='volume']").addEventListener('mouseup', function() { VideoController.volume(); });
       select(".player__slider[name='playbackRate']").addEventListener('mouseup', function() { VideoController.speed(); });
@@ -146,6 +147,9 @@ function selectAll(elements) {
     speed: function() {
       var speedLvl = selectAll('.player__slider')[1].value;
       Video.speed(speedLvl);
+    },
+    fullScreen: function() {
+    		videoElement.webkitRequestFullScreen();
     }
   }
 })();
